@@ -5,7 +5,6 @@ import com.mytutorial.webservice.Track;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
-import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.simpleframework.xml.Serializer;
@@ -15,7 +14,7 @@ import javax.ws.rs.core.UriBuilder;
 import java.io.StringWriter;
 import java.net.URI;
 
-import static com.sun.jersey.api.client.Client.*;
+import static com.sun.jersey.api.client.Client.create;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 import static org.junit.Assert.assertEquals;
