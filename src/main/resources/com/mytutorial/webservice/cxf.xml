@@ -1,0 +1,31 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://cxf.apache.org/jaxrs
+                        http://cxf.apache.org/schemas/jaxrs.xsd">
+
+    <import resource="classpath:META-INF/cxf/cxf.xml"/>
+    <import resource="classpath:META-INF/cxf/cxf-extension-jaxrs-binding.xml"/>
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
+
+    <bean id="helloUserWebService" class="com.mytutorial.webservice.HelloUserWebServiceImpl"/>
+
+    <!--<jaxrs:server id="userRestfulWebService" address="/userservices/">-->
+    <jaxrs:server id="userRestfulWebService" address="/">
+        <jaxrs:serviceBeans>
+            <ref bean="helloUserWebService"/>
+        </jaxrs:serviceBeans>
+        <jaxrs:extensionMappings>
+            <entry key="xml" value="application/xml"/>
+            <!--<entry key="json" value="application/json"/>-->
+        </jaxrs:extensionMappings>
+        <jaxrs:providers>
+            <bean class="org.apache.cxf.jaxrs.provider.JSONProvider">
+                <property name="dropRootElement" value="true" />
+                <property name="supportUnwrapped" value="true" />
+            </bean>
+        </jaxrs:providers>
+    </jaxrs:server>
+
+</beans>
